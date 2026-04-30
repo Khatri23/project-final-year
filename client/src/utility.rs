@@ -1,6 +1,5 @@
 
 use rand::{RngCore, rngs::OsRng,Rng};
-
 //this bridges c++ & rust code
 #[cxx::bridge]
 pub mod homomorphic_encryption {
@@ -70,7 +69,7 @@ pub fn encode(msg:& i32, prime:i32,degree:usize) ->Vec<i32> {
     }
     message
 }
-pub fn decode(msg:Vec<i32>) ->u64 { //transfer the ownership of decrypted value since we don't need that
+pub fn decode(msg:&Vec<i32>) ->u64 {
     let mut result:u64=0;
     for (_,i) in msg.iter().rev().enumerate() {
         result=(result << 1) + *i as u64;

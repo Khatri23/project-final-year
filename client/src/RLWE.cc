@@ -101,7 +101,7 @@ Cipher RLWE_EncryptOP(const rust::Vec<int>& secret,rust::Vec<int>message, const 
     
     return Cipher{a,res};
 } 
-
+const int t=50; //plaintext modulo
 rust::Vec<int> RLWE_DecryptOP(const rust::Vec<int>&s,const Cipher& c,const std::shared_ptr<Original_parameter>&obj){
     vector<int>a,b,m,secret;
     std::copy(s.begin(),s.end(),std::back_inserter(secret)); //make compatible with c++ vectors;
@@ -109,7 +109,6 @@ rust::Vec<int> RLWE_DecryptOP(const rust::Vec<int>&s,const Cipher& c,const std::
     std::copy(c.b.begin(),c.b.end(),std::back_inserter(b));
     polynomial_multiplication(m,a,secret,obj);
     polynomial_subtraction(m,b,m,obj);
-    int t=50; //plaintext modulo
     int sk=obj->prime/t;
     int rem_bound=sk/2; //if the remainder is > than half then ceil value
     for(auto &x:m)
@@ -152,7 +151,6 @@ rust::Vec<int> RLWE_DecryptRP(const rust::Vec<int>&s,const Cipher& c,const std::
     std::copy(c.b.begin(),c.b.end(),std::back_inserter(b));
     polynomial_multiplication(m,a,secret,obj);
     polynomial_subtraction(m,b,m,obj);
-    int t=50; //plaintext modulo
     int sk=obj->prime/t;
     int rem_bound=sk/2; //if the remainder is > than half then ceil value
     for(auto &x:m)

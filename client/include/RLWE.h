@@ -155,7 +155,7 @@ void polynomial_addition(vector<int>&,vector<int>&,vector<int>&, const std::shar
 template<typename T>
 void polynomial_subtraction(vector<int>&,vector<int>&,vector<int>&, const std::shared_ptr<Original_parameter>&);
 #include"rust/cxx.h"
-#include "client/src/main.rs.h"
+#include"client/src/utility.rs.h"
 struct Cipher;
 Cipher RLWE_EncryptOP(const rust::Vec<int>&,rust::Vec<int>, const std::shared_ptr<Original_parameter>&);
 rust::Vec<int> RLWE_DecryptOP(const rust::Vec<int>&,const Cipher&,const std::shared_ptr<Original_parameter>&);
